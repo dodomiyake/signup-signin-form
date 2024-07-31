@@ -137,6 +137,7 @@ app.post('/signin', async (req, res) => {
         const foundUser = await User.findAndValidate(email, password);
         if (foundUser) {
             req.session.user_id = foundUser._id;
+            req.flash('success', 'Welcome back');
             return res.redirect('home');
         } else {
             req.flash('error', 'Invalid email or password');
@@ -157,6 +158,7 @@ app.get('/home', requireLogin, (req, res) => {
 // Route to handle logout
 app.post('/logout', (req, res) => {
     req.session.user_id = null;
+    req.flash('success', 'Goodbye!');
     res.redirect('/signin')
 })
 
