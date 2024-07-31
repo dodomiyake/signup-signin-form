@@ -85,6 +85,11 @@ const requireLogin = (req, res, next) => {
     next();
 }
 
+// Home route
+app.get('/', (req, res) => {
+    res.render('signup');
+  });
+
 // Route to render signup page
 app.get('/signup', (req, res) => {
     res.render("signup");
